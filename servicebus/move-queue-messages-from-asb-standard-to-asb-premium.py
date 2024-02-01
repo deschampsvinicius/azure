@@ -1,4 +1,8 @@
-# Please read the README to check how to execute this script
+# README
+# 1. To install the required Python packages for this Service Bus tutorial, open a command prompt that has Python in its path, change the directory to the folder where you want to have your samples.
+# 2. Install the following packages: 
+#    - pip install azure-servicebus
+#    - pip install azure-identity 
 
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
 from azure.identity.aio import DefaultAzureCredential
