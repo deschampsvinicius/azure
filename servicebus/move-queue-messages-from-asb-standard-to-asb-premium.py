@@ -2,17 +2,13 @@
 # 1. To install the required Python packages for this Service Bus tutorial, open a command prompt that has Python in its path, change the directory to the folder where you want to have your samples.
 # 2. Install the following packages: 
 #    - pip install azure-servicebus
-#    - pip install azure-identity 
 
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
-from azure.identity.aio import DefaultAzureCredential
-
-credential = DefaultAzureCredential()
 
 def main():
     try:
-        src_connection_string = "<REPLACE-WITH-AZURE-SERVICE-BUS-STANDARD-CONNECTION-STRING>"
-        dest_connection_string = "<REPLACE-WITH-AZURE-SERVICE-BUS-PREMIUM-CONNECTION-STRING>"
+        src_connection_string = "<REPLACE-WITH-AZURE-SERVICE-BUS-STANDARD-PRIMARY-OR-SECONDARY-CONNECTION-STRING>"
+        dest_connection_string = "<REPLACE-WITH-AZURE-SERVICE-BUS-PREMIUM-PRIMARY-OR-SECONDARY-CONNECTION-STRING>"
         src_queue_name = "queue-test"
         dest_queue_name = "queue-test"
 
