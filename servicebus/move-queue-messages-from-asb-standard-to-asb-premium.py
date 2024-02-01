@@ -1,3 +1,5 @@
+# Please read the README to check how to execute this script
+
 from azure.servicebus import ServiceBusClient, ServiceBusMessage
 from azure.identity.aio import DefaultAzureCredential
 
