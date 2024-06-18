@@ -1,0 +1,87 @@
+{
+        "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+        "contentVersion": "1.0.0.0",
+        "parameters": {
+                "devcenterName": {
+                        "value": "bicep-devcenter"
+                },
+                "projectName": {
+                        "value": "bicep-project"
+                },
+                "projectDescription": {
+                        "value": ""
+                },
+                "definitionName": {
+                        "value": "bicep-definition"
+                },
+                "catalogName": {
+                        "value": "bicep-catalog"
+                },
+                "repoUri": {
+                        "value": "https://github.com/microsoft/devcenter-catalog.git"
+                },
+                "branch": {
+                        "value": "main"
+                },
+                "path": {
+                        "value": "Environment-Definitions"
+                },
+                "galleryName": {
+                        "value": "default"
+                },
+                "image": {
+                        "value": "win11"
+                },
+                "storage": {
+                        "value": "ssd_256gb"
+                },
+                "virtualNetwork": {
+                        "value": "bicep-vnet"
+                },
+                "subnetName": {
+                        "value": "default"
+                },
+                "subnetsName": {
+                        "value": [
+                                {  
+                                "name": "default",
+                                "prefix": "192.168.5.0/28"
+                                }
+                        ]
+
+                },
+                "vnetPrefix": {
+                        "value": "192.168.5.0/24"
+                },
+                "poolName": {
+                        "value": "bicep-pool"
+                },
+                "localAdministrator": {
+                        "value": "Enabled"
+                },
+                "networkConnectionName": {
+                        "value": "dcon-bicep-devcenter-eastus"
+                },
+                "roleAssignments": {
+                        "value": [
+                                {
+                                "roleID": "331c37c6-af14-46d9-b9f4-e1909e1b95a0",
+                                "principalID": "a4ba958e-3be5-48fa-a383-c90c15da9452",
+                                "principalType": "User"
+                                },
+                                {
+                                "roleID": "45d50f46-0b78-4001-a660-4198cbe8cd05",
+                                "principalID": "a4ba958e-3be5-48fa-a383-c90c15da9452",
+                                "principalType": "User"
+                                }
+                        ]
+                },
+                "tags": {
+                        "value": {
+                                "Environment": "tdc-floripa",
+                                "Project": "TDC",
+                                "Owner": "Vinicius Deschamps"
+                        }
+                }
+        }
+}

@@ -1,0 +1,60 @@
+@description('The dev center name')
+param devcenterName string
+
+@description('The definition name')
+param definitionName string
+
+@description('The location to deploy the dev center to')
+param location string = resourceGroup().location
+
+// param nameseed string = 'usedtaxidmadc01'
+// param definitionName string = '${nameseed}-${image}-${storage}'
+
+param galleryName string = 'Default'
+
+@allowed(['win11', 'vs2022win11m365'])
+param image string = 'win11'
+
+var sku = skuMap.vm8core32memory
+var skuMap = {
+  vm8core32memory: 'general_i_8c32gb256ssd_v2'
+}
+
+@allowed(['ssd_256gb', 'ssd_512gb', 'ssd_1024gb'])
+param storage string = 'ssd_256gb'
+
+var defaultImageMap = {
+  win11: 'microsoftwindowsdesktop_windows-ent-cpc_win11-22h2-ent-cpc-os'
+  vs2022win11m365: 'microsoftvisualstudio_visualstudioplustools_vs-2022-ent-general-win11-m365-gen2'
+}
+
+resource devcenter 'Microsoft.DevCenter/devcenters@2023-04-01' existing = {
+  name: devcenterName
+}
+
+resource gallery 'Microsoft.DevCenter/devcenters/galleries@2023-04-01' existing = {
+  name: galleryName
+  parent: devcenter
+}
+
+resource galleryimage 'Microsoft.DevCenter/devcenters/galleries/images@2023-04-01' existing = {
+  name: defaultImageMap['${image}']
+  parent: gallery
+}
+output imageGalleryId string = galleryimage.id
+
+resource devboxdefition 'Microsoft.DevCenter/devcenters/devboxdefinitions@2023-04-01' = {
+  name: definitionName
+  parent: devcenter
+  location: location
+  properties: {
+    sku: {
+      name: sku
+    }
+    imageReference: {
+      id: galleryimage.id //the resource-id of a Microsoft.DevCenter Gallery Image
+    }
+    osStorageType: storage
+    hibernateSupport: 'Disabled'
+  }
+}
